@@ -31,3 +31,8 @@ google-services.json
 
 # Android Profiling
 *.hprof
+
+# Mac generated file
+.DS_Store
+
+.gradle
