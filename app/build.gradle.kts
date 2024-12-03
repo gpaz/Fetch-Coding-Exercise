@@ -43,7 +43,6 @@ android {
 dependencies {
 
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
@@ -57,11 +56,25 @@ dependencies {
     implementation(libs.squareup.moshi.kotlin.codegen)
     implementation(libs.squareup.retrofit2)
     implementation(libs.squareup.retrofit2.converter.moshi)
-    implementation(libs.squareup.retrofit2.converter.gson)
+    /**
+     * Unused in the current implementation; opted to use moshi instead.
+     * Just have it here for reference.
+     */
+    //implementation(libs.squareup.retrofit2.converter.gson)
     implementation(libs.squareup.okhttp)
+    implementation(libs.squareup.okhttp.logginginterceptor)
     implementation(libs.kotlinx.lifecycle.viewmodel.ktx)
     implementation(libs.kotlinx.lifecycle.livedata.ktx)
     implementation(libs.kotlinx.lifecycle.runtime.ktx)
+
+    // MichaelBull Result implementation
+    implementation(libs.michaelbull.kotlinresult)
+    implementation(libs.michaelbull.kotlinresult.coroutines)
+//    implementation(libs.google.guava.android) // NOT NEEDED
+
+    // Koin DI
+    implementation(libs.koin.android)
+    implementation(libs.koin.androidx.compose)
 
     // https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-coroutines-android
     runtimeOnly(libs.kotlinx.coroutines.android)

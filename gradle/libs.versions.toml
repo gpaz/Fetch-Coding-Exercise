@@ -1,25 +1,27 @@
 [versions]
-agp = "8.7.2"
+agp = "8.7.3"
 kotlin = "2.0.0"
 coreKtx = "1.15.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
-lifecycleRuntimeKtx = "2.8.7"
 activityCompose = "1.9.3"
 composeBom = "2024.11.00"
 moshiVersion = "1.15.1"
 retrofitVersion = "2.11.0"
 okhttpVersion = "5.0.0-alpha.14" #"4.12.0"
 coroutinesVersion = "1.9.0"
-kotlinxLifecycleVersion = "2.9.0-alpha07"
+kotlinxLifecycleVersion = "2.9.0-alpha07" #"2.8.7"
+loggingInterceptorVersion = "4.12.0"
+michaelBullKotlinResultVersion = "2.0.0"
+koinVersion = "4.1.0-Beta1" #"4.0.0"
+guavaAndroidVersion = "33.3.1-android"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
-androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
 androidx-ui = { group = "androidx.compose.ui", name = "ui" }
@@ -37,10 +39,16 @@ squareup-retrofit2 = { group = "com.squareup.retrofit2", name = "retrofit", vers
 squareup-retrofit2-converter-moshi = { group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "retrofitVersion" }
 squareup-retrofit2-converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofitVersion" }
 squareup-okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttpVersion" }
+squareup-okhttp-logginginterceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "loggingInterceptorVersion" }
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutinesVersion" }
-kotlinx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-", version.ref = "kotlinxLifecycleVersion" }
-kotlinx-lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-", version.ref = "kotlinxLifecycleVersion" }
-kotlinx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-", version.ref = "kotlinxLifecycleVersion" }
+kotlinx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "kotlinxLifecycleVersion" }
+kotlinx-lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "kotlinxLifecycleVersion" }
+kotlinx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "kotlinxLifecycleVersion" }
+michaelbull-kotlinresult = { group = "com.michael-bull.kotlin-result", name = "kotlin-result", version.ref = "michaelBullKotlinResultVersion" }
+michaelbull-kotlinresult-coroutines = { group = "com.michael-bull.kotlin-result", name = "kotlin-result-coroutines", version.ref = "michaelBullKotlinResultVersion" }
+koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koinVersion" }
+koin-androidx-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koinVersion" }
+google-guava-android = { group = "com.google.guava", name = "guava", version.ref = "guavaAndroidVersion" }
 
 
 [plugins]
