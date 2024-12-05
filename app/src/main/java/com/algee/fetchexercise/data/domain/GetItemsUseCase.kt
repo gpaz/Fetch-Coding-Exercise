@@ -1,22 +1,15 @@
 package com.algee.fetchexercise.data.domain
 
 import com.algee.fetchexercise.common.Comparators
-import com.algee.fetchexercise.common.Maps
-import com.algee.fetchexercise.data.model.HiringItem
+import com.algee.fetchexercise.api.model.HiringItem
 import com.algee.fetchexercise.data.repository.HiringItemsRepository
 import com.algee.fetchexercise.data.repository.error.FetchApiError
 import com.github.michaelbull.result.Err
 import com.github.michaelbull.result.Ok
 import com.github.michaelbull.result.Result
-import com.github.michaelbull.result.onFailure
-import com.github.michaelbull.result.onSuccess
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import retrofit2.HttpException
-import java.util.LinkedHashMap
-import java.util.NavigableMap
-import java.util.SortedMap
 import java.util.TreeMap
 
 class GetItemsUseCase(
@@ -35,14 +28,13 @@ class GetItemsUseCase(
                 } else {
                     val map = result
                         .value
-                        .filterNot { it.name.isBlank() }
+                        .filterNot { it.name.isNullOrBlank() }
                         .groupByTo(TreeMap(Comparators.IntAscendingOrder)) { it.listId }
-                        .mapValues {
-                            it.value.sortedBy { it.name }
+                        .mapValues { entry ->
+                            entry.value.sortedBy { it.name }
                         }
                     Ok(map)
                 }
             }
         }
 }
-

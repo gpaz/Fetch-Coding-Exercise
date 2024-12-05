@@ -1,5 +1,5 @@
 package com.algee.fetchexercise.data.repository.error
 
-interface TypedCausedError<E : Exception> {
+interface TypedCausedError<E : Throwable> {
     val typedCause: E
 }

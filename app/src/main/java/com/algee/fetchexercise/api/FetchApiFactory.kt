@@ -5,22 +5,24 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-object FetchApiFactory {
+class FetchApiFactory(
+    private val mBaseUrl: String = BASE_URL,
+    private val mLoggingLevel: HttpLoggingInterceptor.Level = HttpLoggingInterceptor.Level.BASIC
+) {
 
-    private const val BASE_URL = "https://fetch-hiring.s3.amazonaws.com/"
-
-    operator fun invoke(
-        baseUrl: String = BASE_URL,
-        loggingLevel: HttpLoggingInterceptor.Level = HttpLoggingInterceptor.Level.BASIC
-    ): FetchApi =
+    fun build() : FetchApi =
         Retrofit.Builder()
-            .baseUrl(baseUrl)
+            .baseUrl(mBaseUrl)
             .client(OkHttpClient.Builder().addInterceptor(HttpLoggingInterceptor().apply {
-                level = loggingLevel
+                level = mLoggingLevel
             }).build())
             .addConverterFactory(
                 MoshiConverterFactory.create(FetchMoshi())
             )
             .build()
             .create(FetchApi::class.java)
+
+    companion object {
+        private const val BASE_URL = "https://fetch-hiring.s3.amazonaws.com/"
+    }
 }
