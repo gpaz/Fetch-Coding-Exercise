@@ -48,6 +48,9 @@ michaelbull-kotlinresult = { group = "com.michael-bull.kotlin-result", name = "k
 michaelbull-kotlinresult-coroutines = { group = "com.michael-bull.kotlin-result", name = "kotlin-result-coroutines", version.ref = "michaelBullKotlinResultVersion" }
 koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koinVersion" }
 koin-androidx-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koinVersion" }
+koin-androidx-navigation = { group = "io.insert-koin", name = "koin-androidx-navigation", version.ref = "koinVersion" }
+koin-test-junit4 = { group = "io.insert-koin", name = "koin-test-junit4", version.ref = "koinVersion" }
+koin-test-junit5 = { group = "io.insert-koin", name = "koin-test-junit5", version.ref = "koinVersion" }
 google-guava-android = { group = "com.google.guava", name = "guava", version.ref = "guavaAndroidVersion" }
 
 

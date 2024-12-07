@@ -2,6 +2,7 @@ package com.algee.fetchexercise.data.domain
 
 import com.algee.fetchexercise.common.Comparators
 import com.algee.fetchexercise.api.model.HiringItem
+import com.algee.fetchexercise.data.model.HiringItemStrictWrapper
 import com.algee.fetchexercise.data.repository.HiringItemsRepository
 import com.algee.fetchexercise.data.repository.error.FetchApiError
 import com.github.michaelbull.result.Err
@@ -20,7 +21,7 @@ class GetItemsUseCase(
      * Returns the hiring json list of hiring items in a map of list of items
      * grouped by their 'listId' and sorted alphabetically by their 'name'.
      */
-    suspend fun invoke(): Result<Map<Int, List<HiringItem>>, FetchApiError> =
+    suspend operator fun invoke(): Result<Map<Int, List<HiringItemStrictWrapper>>, FetchApiError> =
         withContext(dispatcher) {
             hiringItemsRepository.getHiringItems().let { result ->
                 if (result.isErr) {
@@ -29,7 +30,12 @@ class GetItemsUseCase(
                     val map = result
                         .value
                         .filterNot { it.name.isNullOrBlank() }
-                        .groupByTo(TreeMap(Comparators.IntAscendingOrder)) { it.listId }
+                        // Wrap it around a an item that exposes a non-null 'name' property
+                        // for simplicity at the UI that also requires a non-null value
+                        .map { HiringItemStrictWrapper(it) }
+                        .groupByTo(TreeMap(Comparators.IntAscendingOrder)) {
+                            it.listId
+                        }
                         .mapValues { entry ->
                             entry.value.sortedBy { it.name }
                         }
