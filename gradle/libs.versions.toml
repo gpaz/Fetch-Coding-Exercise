@@ -2,25 +2,33 @@
 agp = "8.7.3"
 kotlin = "2.0.0"
 coreKtx = "1.15.0"
-junit = "4.13.2"
-junitVersion = "1.2.1"
+junit4Version = "4.13.2"
+androidxJunitVersion = "1.2.1"
 espressoCore = "3.6.1"
 activityCompose = "1.9.3"
 composeBom = "2024.11.00"
 moshiVersion = "1.15.1"
 retrofitVersion = "2.11.0"
 okhttpVersion = "5.0.0-alpha.14" #"4.12.0"
-coroutinesVersion = "1.9.0"
+kotlinxCoroutinesVersion = "1.9.0"
 kotlinxLifecycleVersion = "2.9.0-alpha07" #"2.8.7"
 loggingInterceptorVersion = "4.12.0"
 michaelBullKotlinResultVersion = "2.0.0"
 koinVersion = "4.1.0-Beta1" #"4.0.0"
 guavaAndroidVersion = "33.3.1-android"
+startupRuntimeVersion = "1.2.0"
+junit5Version = "5.11.3"
+kotlinxCoroutinesTestVersion = "1.9.0"
+
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
-junit = { group = "junit", name = "junit", version.ref = "junit" }
-androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+junit-four-api = { group = "junit", name = "junit", version.ref = "junit4Version" }
+junit-five-api = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "junit5Version" }
+junit-five-engine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "junit5Version" }
+# To run junit4 tests alongside junit5
+junit-vintage-engine = { group = "org.junit.vintage", name = "junit-vintage-engine", version.ref = "junit5Version" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidxJunitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
@@ -31,6 +39,7 @@ androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-toolin
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+androidx-startup-runtime = { group =  "androidx.startup", name = "startup-runtime", version.ref = "startupRuntimeVersion" }
 squareup-moshi = { group = "com.squareup.moshi", name = "moshi", version.ref = "moshiVersion" }
 squareup-moshi-kotlin = { group = "com.squareup.moshi", name = "moshi-kotlin", version.ref = "moshiVersion" }
 squareup-moshi-adapters = { group = "com.squareup.moshi", name = "moshi-adapters", version.ref = "moshiVersion" }
@@ -40,10 +49,12 @@ squareup-retrofit2-converter-moshi = { group = "com.squareup.retrofit2", name = 
 squareup-retrofit2-converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofitVersion" }
 squareup-okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttpVersion" }
 squareup-okhttp-logginginterceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "loggingInterceptorVersion" }
-kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutinesVersion" }
+kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "kotlinxCoroutinesVersion" }
+kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTestVersion" }
 kotlinx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "kotlinxLifecycleVersion" }
 kotlinx-lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "kotlinxLifecycleVersion" }
 kotlinx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "kotlinxLifecycleVersion" }
+
 michaelbull-kotlinresult = { group = "com.michael-bull.kotlin-result", name = "kotlin-result", version.ref = "michaelBullKotlinResultVersion" }
 michaelbull-kotlinresult-coroutines = { group = "com.michael-bull.kotlin-result", name = "kotlin-result-coroutines", version.ref = "michaelBullKotlinResultVersion" }
 koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koinVersion" }
@@ -52,6 +63,7 @@ koin-androidx-navigation = { group = "io.insert-koin", name = "koin-androidx-nav
 koin-test-junit4 = { group = "io.insert-koin", name = "koin-test-junit4", version.ref = "koinVersion" }
 koin-test-junit5 = { group = "io.insert-koin", name = "koin-test-junit5", version.ref = "koinVersion" }
 google-guava-android = { group = "com.google.guava", name = "guava", version.ref = "guavaAndroidVersion" }
+
 
 
 [plugins]

@@ -15,7 +15,14 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        val trueStr = "true"
+
+        // Use JUnit 4 for instrumentation tests
+        //testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "org.junit.runners.JUnit4"
+        // Use JUnit 5 for local unit tests
+        testInstrumentationRunnerArguments["runnerBuilder"] = trueStr
+        testInstrumentationRunnerArguments["de.mannodermaus.junit5.AndroidJUnit5Builder"] = trueStr
     }
 
     buildTypes {
@@ -79,8 +86,14 @@ dependencies {
     // https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-coroutines-android
     runtimeOnly(libs.kotlinx.coroutines.android)
 
+    // Androidx Startup
+    implementation(libs.androidx.startup.runtime)
 
-    testImplementation(libs.junit)
+
+    testImplementation(libs.junit.five.api)
+    testImplementation(libs.junit.five.engine)
+    testImplementation(libs.kotlinx.coroutines.android)
+    testImplementation(libs.kotlinx.coroutines.test)
 
 
 
