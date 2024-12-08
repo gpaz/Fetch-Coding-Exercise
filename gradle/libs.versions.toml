@@ -52,7 +52,9 @@ squareup-okhttp-logginginterceptor = { group = "com.squareup.okhttp3", name = "l
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "kotlinxCoroutinesVersion" }
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTestVersion" }
 kotlinx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "kotlinxLifecycleVersion" }
+kotlinx-lifecycle-livedata = { group = "androidx.lifecycle", name = "lifecycle-livedata", version.ref = "kotlinxLifecycleVersion" }
 kotlinx-lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "kotlinxLifecycleVersion" }
+kotlinx-lifecycle-runtime = { group = "androidx.lifecycle", name = "lifecycle-runtime", version.ref = "kotlinxLifecycleVersion" }
 kotlinx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "kotlinxLifecycleVersion" }
 
 michaelbull-kotlinresult = { group = "com.michael-bull.kotlin-result", name = "kotlin-result", version.ref = "michaelBullKotlinResultVersion" }

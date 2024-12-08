@@ -20,25 +20,27 @@ class DisplayHiringItemsViewModel(
     private val getItemsUseCase: GetItemsUseCase,
 ) : ScopeViewModel() {
 
-    private val mHiringItemsFlow: MutableStateFlow<HiringItemsState?> =
-        MutableStateFlow(null)
+    private val mHiringItemsFlow: MutableStateFlow<HiringItemsState> =
+        MutableStateFlow(HiringItemsState.Uninitialized)
 
-    private val mErrorFlow: MutableSharedFlow<ErrorState<Throwable>?> =
+    private val mErrorFlow: MutableSharedFlow<ErrorState<Throwable>> =
         MutableSharedFlow()
 
     private val mIsProcessing: MutableStateFlow<Boolean> =
         MutableStateFlow(false)
 
-    val hiringItems: StateFlow<HiringItemsState?> =
+    val hiringItems: StateFlow<HiringItemsState> =
         mHiringItemsFlow.asStateFlow()
 
-    val error: SharedFlow<ErrorState<Throwable>?> =
+    val error: SharedFlow<ErrorState<Throwable>> =
         mErrorFlow.asSharedFlow()
 
     val isProcessing: StateFlow<Boolean> =
         mIsProcessing.asStateFlow()
 
     sealed class HiringItemsState {
+
+        data object Uninitialized: HiringItemsState()
 
         data class Updated(
             val value: Map<Int, List<HiringItemStrictWrapper>>
@@ -48,6 +50,11 @@ class DisplayHiringItemsViewModel(
     sealed interface ErrorState<out T : Throwable> {
 
         val value: T?
+
+        data object NoError : ErrorState<Nothing> {
+            override val value: Nothing?
+                get() = null
+        }
 
         @JvmInline
         value class NoInternet(
@@ -88,7 +95,7 @@ class DisplayHiringItemsViewModel(
                         }
                     } else {
                         // Reset error
-                        mErrorFlow.emit(null)
+                        mErrorFlow.emit(ErrorState.NoError)
                         // Update results
                         useCaseResult.value.let {
                             mHiringItemsFlow.emit(

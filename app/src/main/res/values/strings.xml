@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Fetch Exercise</string>
+    <string name="display_hiring_items_activity_title">Hiring Items</string>
+    <string name="hiring_item_property_title_name">Name</string>
+    <string name="hiring_item_property_title_id">ID</string>
+<!--    <string name=""></string>-->
 </resources>

@@ -6,19 +6,19 @@ plugins {
 
 android {
     namespace = "com.algee.fetchexercise"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.algee.fetchexercise"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
         val trueStr = "true"
 
         // Use JUnit 4 for instrumentation tests
-        //testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+//        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         testInstrumentationRunner = "org.junit.runners.JUnit4"
         // Use JUnit 5 for local unit tests
         testInstrumentationRunnerArguments["runnerBuilder"] = trueStr
@@ -44,7 +44,7 @@ android {
     buildFeatures {
         compose = true
     }
-    buildToolsVersion = "34.0.0"
+    buildToolsVersion = "35.0.0"
 }
 
 dependencies {
@@ -71,7 +71,9 @@ dependencies {
     implementation(libs.squareup.okhttp)
     implementation(libs.squareup.okhttp.logginginterceptor)
     implementation(libs.kotlinx.lifecycle.viewmodel.ktx)
+    implementation(libs.kotlinx.lifecycle.livedata)
     implementation(libs.kotlinx.lifecycle.livedata.ktx)
+    implementation(libs.kotlinx.lifecycle.runtime)
     implementation(libs.kotlinx.lifecycle.runtime.ktx)
 
     // MichaelBull Result implementation
