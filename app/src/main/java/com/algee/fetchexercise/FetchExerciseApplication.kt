@@ -2,7 +2,8 @@ package com.algee.fetchexercise
 
 import android.app.Application
 import com.algee.fetchexercise.di.koin.modules.AppModule
-import com.algee.fetchexercise.di.koin.modules.DisplayHiringItemsModule
+import com.algee.fetchexercise.di.koin.modules.ViewModelModule
+import com.algee.fetchexercise.di.koin.modules.DomainModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -19,8 +20,12 @@ class FetchExerciseApplication : Application() {
             androidLogger()
             androidContext(this@FetchExerciseApplication)
             modules(
+                // App domain
                 AppModule(),
-                DisplayHiringItemsModule()
+                // Domain (i.e. use cases for MVVM Clean)
+                DomainModule(),
+                //
+                ViewModelModule()
             )
         }
     }

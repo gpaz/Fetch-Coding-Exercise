@@ -1,10 +1,12 @@
 package com.algee.fetchexercise.ui.section.hiring
 
+import androidx.compose.ui.window.isPopupLayout
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.algee.fetchexercise.data.domain.GetItemsUseCase
 import com.algee.fetchexercise.data.model.HiringItemStrictWrapper
 import com.algee.fetchexercise.data.repository.error.FetchApiError
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -51,6 +53,9 @@ class DisplayHiringItemsViewModel(
 
         val value: T?
 
+        val message: String?
+            get() = value?.localizedMessage
+
         data object NoError : ErrorState<Nothing> {
             override val value: Nothing?
                 get() = null
@@ -64,19 +69,29 @@ class DisplayHiringItemsViewModel(
         @JvmInline
         value class HttpError(
             override val value: HttpException
-        ) : ErrorState<HttpException>
+        ) : ErrorState<HttpException> {
+            val code: Int
+                get() = value.code()
+        }
 
         @JvmInline
         value class UnclassifiedError(
             override val value: Throwable
-        ) : ErrorState<Throwable>
+        ) : ErrorState<Throwable> {
+
+            val type: String
+                get() = value::class.simpleName ?: "<null>"
+
+        }
     }
 
     fun requestHiringItems(): Boolean {
         if (isProcessing.value /*is true*/) {
             return false
         } else {
+            mIsProcessing.value = true
             viewModelScope.launch {
+                delay(5000L)
                 getItemsUseCase().let { useCaseResult ->
                     if (useCaseResult.isErr) {
                         val useCaseError = useCaseResult.error
