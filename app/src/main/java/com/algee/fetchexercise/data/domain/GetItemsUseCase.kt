@@ -19,7 +19,7 @@ class GetItemsUseCase(
 ) {
     /**
      * Returns the hiring json list of hiring items in a map of list of items
-     * grouped by their 'listId' and sorted alphabetically by their 'name'.
+     * grouped by their 'listId' and then sorted alphabetically by their 'name'.
      */
     suspend operator fun invoke(): Result<Map<Int, List<HiringItemStrictWrapper>>, FetchApiError> =
         withContext(dispatcher) {

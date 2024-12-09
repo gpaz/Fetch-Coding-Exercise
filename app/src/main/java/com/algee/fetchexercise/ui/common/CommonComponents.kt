@@ -8,6 +8,11 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 
+/**
+ * A Container for common compose components.  This can be
+ * put here and moved to a separate module later on if necessary,
+ * which, for the purpose of the exercise, is not needed.
+ */
 object CommonComponents {
 
     @OptIn(ExperimentalMaterial3Api::class)

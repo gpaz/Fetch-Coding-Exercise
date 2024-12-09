@@ -19,6 +19,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FetchExercise"
         tools:targetApi="31">
+
+        <!--
+            Activities
+        -->
+
         <activity
             android:name=".ui.section.hiring.DisplayHiringItemsActivity"
             android:exported="true"
@@ -30,6 +35,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!--
+            Initializers
+        -->
+
+        <!-- Initializer for Koin dependency Injection -->
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            android:exported="false"
+            tools:node="merge">
+
+            <meta-data
+                android:name="com.algee.fetchexercise.startup.KoinDependencyInjectionInitializer"
+                android:value="androidx.startup" />
+        </provider>
+
     </application>
 
 </manifest>

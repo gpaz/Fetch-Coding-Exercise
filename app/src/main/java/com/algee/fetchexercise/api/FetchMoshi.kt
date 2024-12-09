@@ -4,7 +4,10 @@ import com.algee.fetchexercise.api.serializers.HiringItemMoshiTypeAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
-object FetchMoshi {
+/**
+ * Provides a single
+ */
+class FetchMoshi {
 
     private val mMoshi: Moshi by lazy {
         Moshi.Builder()

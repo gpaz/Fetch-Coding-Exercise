@@ -4,11 +4,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -16,12 +14,9 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.ProgressIndicatorDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
@@ -31,13 +26,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableFloatStateOf
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
@@ -58,6 +49,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
+/**
+ * Displays the hiring items found from the Fetch
+ * 'hiring.json' api for this coding exercise.
+ */
 class DisplayHiringItemsActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,7 +66,6 @@ class DisplayHiringItemsActivity : ComponentActivity() {
         }
     }
 
-    @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     private fun DisplayHiringItemsScreen(
         theViewModel: DisplayHiringItemsViewModel
@@ -118,15 +112,17 @@ class DisplayHiringItemsActivity : ComponentActivity() {
                         LazyColumn(
                             contentPadding = PaddingValues(
                                 top = 0.dp,
-                                bottom = 100.dp
+                                bottom = 10.dp,
+                                start = 5.dp,
+                                end = 5.dp
                             ),
-                            verticalArrangement = Arrangement.spacedBy(5.dp)
+                            verticalArrangement = Arrangement.spacedBy(12.dp)
                         ) {
                             val groupedHiringItemEntries = (hiringItemsState as Updated)
                                 .value
                                 .entries
                                 .toList()
-                            groupedHiringItemEntries.forEachIndexed { groupIndex, (listId, hiringItems) ->
+                            groupedHiringItemEntries.forEach { (listId, hiringItems) ->
                                 item {
                                     Text(
                                         modifier = Modifier
@@ -135,19 +131,28 @@ class DisplayHiringItemsActivity : ComponentActivity() {
                                         //.align(alignment = Alignment.CenterHorizontally),
                                         textAlign = TextAlign.Center,
                                         text = "List ID: $listId",
-                                        fontSize = 25.sp,
+                                        fontSize = 26.sp,
                                     )
                                 }
-                                itemsIndexed(hiringItems) { itemIndex, hiringItem ->
+                                items(hiringItems) { (id, _, name) ->
                                     Card(
                                         modifier = Modifier
                                             .fillMaxWidth()
-                                            .wrapContentHeight()
-                                            .padding(4.dp),
-                                        elevation = CardDefaults.cardElevation(defaultElevation = 5.dp)
+                                            .wrapContentHeight(),
+                                        elevation = CardDefaults
+                                            .cardElevation(defaultElevation = 4.dp),
                                     ) {
-                                        ItemName(hiringItem.name)
-                                        ItemId(hiringItem.id)
+                                        val padding = PaddingValues(
+                                            horizontal = 20.dp,
+                                        )
+                                        ItemName(
+                                            modifier = Modifier.padding(padding),
+                                            name = name
+                                        )
+                                        ItemId(
+                                            modifier = Modifier.padding(padding),
+                                            id = id
+                                        )
                                     }
                                 }
                             }
@@ -157,11 +162,7 @@ class DisplayHiringItemsActivity : ComponentActivity() {
 
                 val errorState by theViewModel.error.collectAsState(NoError)
                 if (isProcessing) {
-                    CircularProgressIndicator(
-//                        modifier = Modifier
-//                            .fillMaxSize()
-//                            .align(Alignment.Center)
-                    )
+                    CircularProgressIndicator()
                 } else {
                     // Show any errors that occurred
                     when (errorState) {
@@ -213,21 +214,33 @@ class DisplayHiringItemsActivity : ComponentActivity() {
     }
 
     @Composable
-    private fun ItemName(name: String) = KeyAndValue(
+    private fun ItemName(
+        modifier: Modifier = Modifier,
+        name: String
+    ) = KeyAndValue(
+        modifier = modifier,
         key = getString(R.string.hiring_item_property_title_name),
         value = name
     )
 
     @Composable
-    private fun ItemId(id: Int) = KeyAndValue(
+    private fun ItemId(
+        modifier: Modifier = Modifier,
+        id: Int
+    ) = KeyAndValue(
+        modifier = modifier,
         key = getString(R.string.hiring_item_property_title_id),
         value = id.toString()
     )
 
     @Composable
-    private fun KeyAndValue(key: String, value: String) {
+    private fun KeyAndValue(
+        modifier: Modifier = Modifier,
+        key: String,
+        value: String
+    ) {
         Text(
-            modifier = Modifier,
+            modifier = modifier,
             textAlign = TextAlign.Start,
             text = "$key: $value"
         )
@@ -252,7 +265,6 @@ class DisplayHiringItemsActivity : ComponentActivity() {
                     SnackbarResult.Dismissed -> {
                         onDismiss()
                     }
-
                     SnackbarResult.ActionPerformed -> {
                         onRetry()
                     }

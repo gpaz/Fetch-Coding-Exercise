@@ -1,15 +1,20 @@
 package com.algee.fetchexercise.di.koin.modules
 
 import com.algee.fetchexercise.data.domain.GetItemsUseCase
+import com.algee.fetchexercise.di.koin.modules.intf.ModuleProvider
 import org.koin.core.module.Module
 import org.koin.dsl.module
 
-internal object DomainModule {
-    private val mDomainModule = module {
+/**
+ * Module that creates and wires domain use cases.
+ */
+@JvmInline
+internal value class DomainModule(
+    override val module: Module = module {
         factory {
             GetItemsUseCase(get())
         }
     }
-
-    operator fun invoke(): Module = mDomainModule
+) : ModuleProvider {
+    operator fun invoke(): Module = module
 }
