@@ -1,5 +1,9 @@
 package com.algee.fetchexercise.common
 
+/**
+ * Unused, but leaving it in for future reference. Commenting out the Maps definition.
+ */
+/*
 object Maps {
 
     /* NOTE: Unneeded, but helpful for other projects.  Leaving in for future reference.
@@ -27,3 +31,4 @@ object Maps {
     }
     */
 }
+*/

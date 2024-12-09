@@ -7,7 +7,11 @@ import com.algee.fetchexercise.data.repository.error.FetchApiError
 import com.github.michaelbull.result.Result
 
 /**
- * Repository for the Hiring items.
+ * Repository for hiring items.  This could be expanded to include a larger set of
+ * api calls, at that point we can rename it.  This is essentially a proxy between
+ * the domain use cases and the api, handling edge cases, thrown errors, and wrapping
+ * everything into a nice common [Result] package that we can then process in the UI
+ * logic.
  */
 class HiringItemsRepository(
     private val fetchApi: FetchApi

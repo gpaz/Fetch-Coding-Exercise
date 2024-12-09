@@ -1,7 +1,6 @@
 package com.algee.fetchexercise.data.domain
 
 import com.algee.fetchexercise.common.Comparators
-import com.algee.fetchexercise.api.model.HiringItem
 import com.algee.fetchexercise.data.model.HiringItemStrictWrapper
 import com.algee.fetchexercise.data.repository.HiringItemsRepository
 import com.algee.fetchexercise.data.repository.error.FetchApiError

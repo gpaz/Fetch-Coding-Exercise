@@ -20,10 +20,9 @@ value class HiringItemStrictWrapper(
     override val name: String
         get() = internalItem.name!!
 
-    inline operator fun component1(): Int = id
+    operator fun component1(): Int = id
 
-    inline operator fun component2(): Int = listId
+    operator fun component2(): Int = listId
 
-    inline operator fun component3(): String = name
-
+    operator fun component3(): String = name
 }

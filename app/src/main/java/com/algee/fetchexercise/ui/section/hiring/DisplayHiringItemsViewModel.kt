@@ -1,7 +1,5 @@
 package com.algee.fetchexercise.ui.section.hiring
 
-import androidx.compose.ui.window.isPopupLayout
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.algee.fetchexercise.data.domain.GetItemsUseCase
 import com.algee.fetchexercise.data.model.HiringItemStrictWrapper

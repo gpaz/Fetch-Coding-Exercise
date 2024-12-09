@@ -7,7 +7,7 @@ import com.github.michaelbull.result.Result
 
 /**
  * Helper functions for the api.  Currently only one helper functions exist, but this would
- * be a space to add those types of functionsm extensions, etc.
+ * be a space to add those types of functions, extensions, etc.
  */
 internal object ApiHelper {
 

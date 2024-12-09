@@ -18,7 +18,7 @@ android {
         val trueStr = "true"
 
         // Use JUnit 4 for instrumentation tests
-//        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        // testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         testInstrumentationRunner = "org.junit.runners.JUnit4"
         // Use JUnit 5 for local unit tests
         testInstrumentationRunnerArguments["runnerBuilder"] = trueStr
@@ -35,16 +35,31 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_22
+        targetCompatibility = JavaVersion.VERSION_22
     }
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = "22"
     }
+    composeCompiler {
+        includeSourceInformation = true
+        includeTraceMarkers = true
+    }
+    composeOptions {
+
+    }
+    // buildFeatures.compose = true is no longer necessary in Kotlin 2.0.0 and above
+    /*
     buildFeatures {
         compose = true
     }
+    */
     buildToolsVersion = "35.0.0"
+}
+
+// Needed to run tests with JUnit5
+tasks.withType<Test> {
+    useJUnitPlatform() // Make all tests use JUnit 5
 }
 
 dependencies {
@@ -79,7 +94,6 @@ dependencies {
     // MichaelBull Result implementation
     implementation(libs.michaelbull.kotlinresult)
     implementation(libs.michaelbull.kotlinresult.coroutines)
-//    implementation(libs.google.guava.android) // NOT NEEDED
 
     // Koin DI
     implementation(libs.koin.android)
@@ -91,19 +105,27 @@ dependencies {
     // Androidx Startup
     implementation(libs.androidx.startup.runtime)
 
+    // Possible solution to enable JUnit5 seems to be ok when commenting out the following
+    // after adding the 'tasks.withType<Test>' block above.  Keeping this just for reference
+    // https://stackoverflow.com/a/64575152/3980474
+    //    testImplementation(kotlin("test-junit5"))
+    //    testImplementation(platform("org.junit:junit-bom:5.11.3"))
+
+    // Use kotlin testing
+    // https://kotlinlang.org/docs/jvm-test-using-junit.html#add-dependencies
+//    testImplementation(kotlin("test"))
 
     testImplementation(libs.junit.five.api)
     testImplementation(libs.junit.five.engine)
     testImplementation(libs.kotlinx.coroutines.android)
     testImplementation(libs.kotlinx.coroutines.test)
-
-
+    testImplementation(libs.mockk)
 
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
-
+    androidTestImplementation(libs.mockk.android)
 
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)

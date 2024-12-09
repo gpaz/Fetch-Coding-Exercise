@@ -15,6 +15,7 @@ import org.koin.core.context.startKoin
 /**
  * Initializer that sets up and initializes the Koin dependency injection library.
  */
+@Suppress("unused")
 class KoinDependencyInjectionInitializer : Initializer<KoinApplication> {
 
     /**
@@ -29,7 +30,7 @@ class KoinDependencyInjectionInitializer : Initializer<KoinApplication> {
         AppModule(),
         // Repositories
         RepositoryModule(),
-        // Domain (i.e. use cases for MVVM Clean)
+        // Domain (i.e. use cases for MVVM Clean Architecture)
         DomainModule(),
         // ViewModels
         ViewModelModule()

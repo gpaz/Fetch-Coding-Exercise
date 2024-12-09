@@ -4,7 +4,6 @@
 
     <uses-permission
         android:name="android.permission.INTERNET" />
-
     <uses-permission
         android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -20,9 +19,9 @@
         android:theme="@style/Theme.FetchExercise"
         tools:targetApi="31">
 
-        <!--
+        <!--////////////////////////////////
             Activities
-        -->
+        /////////////////////////////////-->
 
         <activity
             android:name=".ui.section.hiring.DisplayHiringItemsActivity"
@@ -36,9 +35,9 @@
             </intent-filter>
         </activity>
 
-        <!--
+        <!--////////////////////////////////
             Initializers
-        -->
+        /////////////////////////////////-->
 
         <!-- Initializer for Koin dependency Injection -->
         <provider
