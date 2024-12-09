@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Fetch Exercise</string>
+    <string name="activity_display_hiring_items_name">Hiring Items</string>
+    <string name="display_hiring_items_activity_title">Hiring Items</string>
+    <string name="hiring_item_property_title_name">Name</string>
+    <string name="hiring_item_property_title_id">ID</string>
+    <string name="try_again">Try Again</string>
+    <string name="blank_screen_text">Nothing to see here</string>
+    <string name="alert_no_internet" formatted="false">Please ensure you are connected to the Internet and try again</string>
+    <string name="alert_http_error_fmt" formatted="true">Failed with http error (code:%1$d, msg:\"%2$s\")</string>
+    <string name="alert_unclassified_error_fmt" formatted="true">Failed with unclassified error(type:%1$s, msg:\"%2$s\")</string>
+<!--    <string name=""></string>-->
 </resources>
