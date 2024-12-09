@@ -94,13 +94,13 @@ class DisplayHiringItemsViewModel(
                     if (useCaseResult.isErr) {
                         val useCaseError = useCaseResult.error
                         when (useCaseError) {
-                            is FetchApiError.Connection -> {
+                            is FetchApiError.NoInternet -> {
                                 ErrorState.NoInternet(useCaseError.typedCause)
                             }
                             is FetchApiError.Http -> {
                                 ErrorState.HttpError(useCaseError.typedCause)
                             }
-                            is FetchApiError.Unknown -> {
+                            is FetchApiError.Unclassified -> {
                                 ErrorState.UnclassifiedError(useCaseError.typedCause)
                             }
                         }.also {

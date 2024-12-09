@@ -19,7 +19,7 @@ internal object ApiHelper {
     internal inline fun <T> evaluateApiCall(block: () -> T ): Result<T, FetchApiError> =
         try {
             Ok(block())
-        } catch (exception: Exception) {
+        } catch (exception: Throwable) {
             Err(FetchApiError.map(exception))
         }
 }

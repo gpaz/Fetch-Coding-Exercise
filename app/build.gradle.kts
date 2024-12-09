@@ -24,6 +24,13 @@ android {
         testInstrumentationRunnerArguments["runnerBuilder"] = trueStr
         testInstrumentationRunnerArguments["de.mannodermaus.junit5.AndroidJUnit5Builder"] = trueStr
     }
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            merges += "META-INF/LICENSE.md"
+            merges += "META-INF/LICENSE-notice.md"
+        }
+    }
 
     buildTypes {
         release {
@@ -35,19 +42,19 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_22
-        targetCompatibility = JavaVersion.VERSION_22
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "22"
+        jvmTarget = "17"
     }
     composeCompiler {
-        includeSourceInformation = true
-        includeTraceMarkers = true
+//        includeSourceInformation = true
+//        includeTraceMarkers = true
     }
-    composeOptions {
-
-    }
+//    composeOptions {
+//
+//    }
     // buildFeatures.compose = true is no longer necessary in Kotlin 2.0.0 and above
     /*
     buildFeatures {

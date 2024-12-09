@@ -8,7 +8,7 @@ sealed class FetchApiError(cause: Throwable) : Throwable(cause) {
     /**
      * "No Internet" would cause this.
      */
-    data class Connection(override val typedCause: IOException)
+    data class NoInternet(override val typedCause: IOException)
         : FetchApiError(typedCause), TypedCausedError<IOException>
 
     /**
@@ -24,7 +24,7 @@ sealed class FetchApiError(cause: Throwable) : Throwable(cause) {
      * to miss out and adding these edge cases  to the code-base so that we can
      * handle them properly.
      */
-    data class Unknown(override val typedCause: Throwable)
+    data class Unclassified(override val typedCause: Throwable)
         : FetchApiError(typedCause), TypedCausedError<Throwable>
 
     companion object {
@@ -37,10 +37,10 @@ sealed class FetchApiError(cause: Throwable) : Throwable(cause) {
                     Http(cause)
                 }
                 is IOException -> {
-                    Connection(cause)
+                    NoInternet(cause)
                 }
                 else -> {
-                    Unknown(cause)
+                    Unclassified(cause)
                 }
             }
     }
